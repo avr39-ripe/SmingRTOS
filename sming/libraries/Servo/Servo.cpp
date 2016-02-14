@@ -16,19 +16,17 @@
 #define SERVO_PERIOD 20000
 
 
-HardwareTimer hardwareTimer;
-
 uint8 pins[SERVO_CHANNEL_NUM_MAX];
 uint32 timing[SERVO_CHANNEL_NUM_MAX*2+1];
 uint8 maxTimingIdx;
 uint8 actIndex;
 bool started = false;
 
-void IRAM_ATTR ServoTimerInt()
+void IRAM_ATTR Servo::ServoTimerInt()
 {
 //	assert(started);
-	hardwareTimer.setIntervalUs(timing[actIndex]);
-	hardwareTimer.startOnce();
+	Self->hardwareTimer.setIntervalUs(timing[actIndex]);
+	Self->hardwareTimer.startOnce();
 
 	if (actIndex < maxTimingIdx) {
 		bool out = !(actIndex%2);
@@ -40,12 +38,14 @@ void IRAM_ATTR ServoTimerInt()
 
 Servo::Servo()
 {
+	Self = this;
 	for(uint8 i=0; i<SERVO_CHANNEL_NUM_MAX*2+1; i++) timing[i] = 1000;
 	maxTimingIdx=0;
 }
 
 Servo::~Servo()
 {
+	Self = NULL;
 	channels.removeAllElements();
 }
 

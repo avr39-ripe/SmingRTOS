@@ -21,9 +21,14 @@ public:
 
 //	void Init();
 //	bool SetValues(uint32 value[]);
+
+	static Servo* Self;
+	static void IRAM_ATTR ServoTimerInt();
 	bool addChannel(ServoChannel *channel);
 	bool removeChannel(ServoChannel *channel);
 	void calcTiming();
+	HardwareTimer hardwareTimer;
+
 
 private:
 	void getPins();
