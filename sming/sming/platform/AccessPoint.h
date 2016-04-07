@@ -31,7 +31,8 @@ public:
 	IPAddress getNetworkMask();
 	IPAddress getNetworkGateway();
 	IPAddress getNetworkBroadcast();
-
+	String getSSID();
+	String getPassword();
 protected:
 	virtual void onSystemReady();
 

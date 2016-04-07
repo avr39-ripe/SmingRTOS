@@ -72,6 +72,9 @@ public:
 
 	bool isEnabledDHCP();
 	void enableDHCP(bool enable);
+	void setHostname(String hostname);
+	String getHostname();
+
 
 	IPAddress getIP();
 	String getMAC();
