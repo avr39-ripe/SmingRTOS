@@ -20,7 +20,11 @@ AccessPointClass::AccessPointClass()
 
 void AccessPointClass::enable(bool enabled, bool save)
 {
-	uint8 mode = wifi_get_opmode() & ~SOFTAP_MODE;
+	uint8 mode;
+	if (save)
+		mode = wifi_get_opmode_default() & ~SOFTAP_MODE;
+	else
+		mode = wifi_get_opmode() & ~SOFTAP_MODE;
 	if (enabled) mode |= SOFTAP_MODE;
 //	wifi_set_opmode(static_cast<WIFI_MODE>(mode));
 	if (save)
