@@ -128,12 +128,14 @@ void StationClass::enableDHCP(bool enable)
 
 void StationClass::setHostname(String hostname)
 {
-	wifi_station_set_hostname((char*)hostname.c_str());
+	//unimplemented just stub
+	//wifi_station_set_hostname((char*)hostname.c_str());
 }
 
 String StationClass::getHostname()
 {
-	return (String) wifi_station_get_hostname();
+	//unimplemented just stub
+	//return (String) wifi_station_get_hostname();
 }
 
 IPAddress StationClass::getIP()
